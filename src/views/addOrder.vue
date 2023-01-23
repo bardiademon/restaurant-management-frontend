@@ -59,8 +59,6 @@ const data = ref({
 
 const add = () =>
 {
-  console.log(data.value);
-
   const foodsStr = data.value.foodsId.split(",");
 
   const foodsId = [];
@@ -84,8 +82,6 @@ const add = () =>
         else alert("Added");
       });
 };
-add();
-
 
 </script>
 
