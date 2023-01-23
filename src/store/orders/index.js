@@ -63,6 +63,31 @@ const orders = {
                         commit('setMessageError', "can't error handler");
                     }
                 });
+        },
+        addOrder: ({commit}, data) =>
+        {
+            axios
+                .create({
+                    headers: {token: getCookie("token")}
+                })
+                .post("http://localhost:8888/orders/add", data)
+                .then(res =>
+                {
+                    console.log(res);
+                    commit('setError', false);
+                })
+                .catch(err =>
+                {
+                    commit('setError', true);
+                    try
+                    {
+                        commit('setMessageError', err.response.data.message);
+                    }
+                    catch (e)
+                    {
+                        commit('setMessageError', "can't error handler");
+                    }
+                });
         }
     },
     modules: {publicError}

@@ -1,34 +1,41 @@
 <template>
   <div class="container">
-    <form @submit.prevent="login">
-      <h2 class="mb-3">Login</h2>
+    <form>
+      <h2 class="mb-3">Add Order Restaurant Management</h2>
       <div class="input">
-        <label for="email">Username</label>
+        <label for="userId">User Id</label>
+        <input
+            class="form-control"
+            type="number"
+            name="user_id"
+            v-model="data.userId"
+            placeholder="user id"
+        />
+      </div>
+      <div class="input">
+        <label for="foodsId">Foods Id</label>
         <input
             class="form-control"
             type="text"
-            name="username"
-            v-model="data.username"
-            placeholder="username"
+            v-model="data.foodsId"
+            name="foodsId"
+            placeholder="1,2,3,..."
         />
       </div>
       <div class="input">
-        <label for="password">Password</label>
+        <label for="deliveryId">Delivery Id</label>
         <input
             class="form-control"
-            type="password"
-            v-model="data.password"
-            name="password"
-            placeholder="password123"
+            type="number"
+            v-model="data.deliveryId"
+            name="foodsId"
+            placeholder="Delivery id"
         />
       </div>
-      <div class="alternative-option mt-4">
-        You don't have an account? <span @click="moveToRegister">Register</span>
-      </div>
       <br/>
       <br/>
-      <button type="submit" @click="doLogin" class="mt-4 btn-pers" id="login_button">
-        Login
+      <button type="button" @click="add" class="mt-4 btn-pers" id="login_button">
+        Save
       </button>
       <div
           class="alert alert-warning alert-dismissible fade show mt-5 d-none"
@@ -41,34 +48,44 @@
 </template>
 
 <script setup>
-
 import {ref} from "vue";
 import store from "@/store";
-import router from "@/router";
 
 const data = ref({
-  username: '',
-  password: '',
+  userId: 0,
+  foodsId: '',
+  deliveryId: 0,
 });
 
-const doLogin = () =>
+const add = () =>
 {
-  store.dispatch('generateUserLogin', data)
-      .finally(() =>
+  console.log(data.value);
+
+  const foodsStr = data.value.foodsId.split(",");
+
+  const foodsId = [];
+  for (let i = 0; i < foodsStr.length; i++)
+  {
+    const item = foodsStr[i];
+    if (item !== '')
+    {
+      foodsId[i] = parseInt(item);
+    }
+  }
+
+  store.dispatch("addOrder", {user_id: data.value.userId, foods: foodsId, delivery_id: data.value.deliveryId})
+      .then(() =>
       {
-        if (store.getters.loginIsError)
+        console.log(store.getters.isError)
+        if (store.getters.isError)
         {
-          alert(store.getters.getLoginMessageError);
+          alert(store.getters.getMessageError);
         }
-        else
-        {
-          const token = store.getters.getToken;
-          console.log("token: " + token)
-          document.cookie = "token=" + token;
-          router.push("dashboard");
-        }
+        else alert("Added");
       });
 };
+add();
+
 
 </script>
 
@@ -154,5 +171,4 @@ const doLogin = () =>
   color: #0d6efd;
   cursor: pointer;
 }
-
 </style>
