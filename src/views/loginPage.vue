@@ -44,6 +44,7 @@
 
 import {ref} from "vue";
 import store from "@/store";
+import router from "@/router";
 
 const data = ref({
   username: '',
@@ -62,8 +63,9 @@ const doLogin = () =>
         else
         {
           const token = store.getters.getToken;
+          console.log("token: " + token)
           document.cookie = "token=" + token;
-          document.location.href = "dashboard";
+          router.push("dashboard");
         }
       });
 };

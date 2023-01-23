@@ -13,7 +13,7 @@ const user = {
     actions: {
         generateUserLogin: ({commit}, data) =>
         {
-            console.log(data.value)
+            console.log(data.value);
             axios
                 .post("http://localhost:8888/users/login", data.value)
                 .then(res =>
