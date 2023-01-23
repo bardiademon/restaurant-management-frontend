@@ -65,11 +65,12 @@ const foods = {
                     }
                 });
         },
-        addFoods: ({commit}, data) =>
+        addFood: ({commit}, data) =>
         {
+            console.log(data);
             axios
                 .create({
-                    headers: {token: getCookie("token")}
+                    headers: {token: getCookie("token"), "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY"}
                 })
                 .post("http://localhost:8888/foods/add", data)
                 .then(res =>
