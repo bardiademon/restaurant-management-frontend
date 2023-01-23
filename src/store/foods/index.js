@@ -46,7 +46,7 @@ const foods = {
                 .create({
                     headers: {token: getCookie("token")}
                 })
-                .delete("http://localhost:8888/foods/" + data)
+                .delete("http://localhost:8888/foods/delete/" + data)
                 .then(res =>
                 {
                     console.log(res);

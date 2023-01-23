@@ -20,7 +20,7 @@ const getFoods = () =>
       });
 };
 getFoods();
-const removeOrder = (id) =>
+const removeFood = (id) =>
 {
   store.dispatch('removeFoods', id)
       .then(() =>
@@ -96,7 +96,7 @@ const changeRoute = (name) =>
         <img :src="'http://localhost:8888/foods/get-image/' + food.id" alt='Image'/>
       </td>
       <td>
-        <button class="btn-delete" @click="removeOrder(order.id)">Delete</button>
+        <button class="btn-delete" @click="removeFood(food.id)">Delete</button>
       </td>
     </tr>
     </tbody>
