@@ -5,7 +5,6 @@ import {computed} from "vue";
 const orders = computed(() => store.getters.getOrders);
 
 import store from "@/store";
-import router from "@/router";
 
 store.dispatch('getOrders');
 const getOrders = () =>
