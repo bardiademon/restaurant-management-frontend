@@ -2,15 +2,14 @@
 
 import {computed} from "vue";
 
-const foods = computed(() => store.getters.getFoods);
+const categories = computed(() => store.getters.getCategories);
 
 import store from "@/store";
 import router from "@/router";
 
-store.dispatch('getFoods');
-const getFoods = () =>
+const getCategories = () =>
 {
-  store.dispatch('getFoods')
+  store.dispatch('getCategories')
       .then(() =>
       {
         if (store.getters.isError)
@@ -19,10 +18,10 @@ const getFoods = () =>
         }
       });
 };
-getFoods();
-const removeFood = (id) =>
+getCategories();
+const removeCategory = (id) =>
 {
-  store.dispatch('removeFoods', id)
+  store.dispatch('removeCategory', id)
       .then(() =>
       {
         if (store.getters.isError)
@@ -41,7 +40,7 @@ const changeRoute = (name) =>
 
 <template>
   <br/>
-  <button @click="changeRoute('add-foods')">Add Food</button>
+  <button @click="changeRoute('add-category')">Add Category</button>
   <button @click="changeRoute('dashboard')">Dashboard</button>
   <br/>
   <table>
@@ -53,50 +52,20 @@ const changeRoute = (name) =>
         </div>
       </th>
       <th>
-        Id
-      </th>
-      <th>
         Name
-      </th>
-      <th>
-        Price
-      </th>
-      <th>
-        Category
-      </th>
-      <th>
-        Created at
-      </th>
-      <th>
-        Image
       </th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(food, i) in foods" :key="i">
+    <tr v-for="(category, i) in categories" :key="i">
       <td>
         {{ i }}
       </td>
       <td>
-        {{ food.id }}
+        {{ category }}
       </td>
       <td>
-        {{ food.name }}
-      </td>
-      <td>
-        {{ food.price }}
-      </td>
-      <td>
-        {{ food.category }}
-      </td>
-      <td>
-        {{ food.created_at }}
-      </td>
-      <td>
-        <img :src="'http://localhost:8888/foods/get-image/' + food.id" alt='Image'/>
-      </td>
-      <td>
-        <button class="btn-delete" @click="removeFood(food.id)">Delete</button>
+        <button class="btn-delete" @click="removeCategory(category)">Delete</button>
       </td>
     </tr>
     </tbody>
