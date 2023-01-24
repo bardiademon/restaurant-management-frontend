@@ -70,7 +70,7 @@ const categories = {
             console.log(data);
             axios
                 .create({
-                    headers: {token: getCookie("token")}
+                    headers: {token: getCookie("token"), "Content-Type": "application/x-www-form-urlencoded"}
                 })
                 .post("http://localhost:8888/categories/add", data)
                 .then(res =>
