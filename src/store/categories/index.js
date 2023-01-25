@@ -12,9 +12,9 @@ const categories = {
         }
     },
     actions: {
-        getCategories: ({commit}) =>
+        getCategories: async ({commit}) =>
         {
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -39,10 +39,10 @@ const categories = {
                     }
                 });
         },
-        removeCategory: ({commit}, data) =>
+        removeCategory: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -65,10 +65,10 @@ const categories = {
                     }
                 });
         },
-        addCategory: ({commit}, data) =>
+        addCategory: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token"), "Content-Type": "application/x-www-form-urlencoded"}
                 })

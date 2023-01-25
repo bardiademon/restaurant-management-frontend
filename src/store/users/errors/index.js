@@ -1,5 +1,5 @@
 const userError = {
-    state: {userMessageError: '', userError: false},
+    state: {userMessageError: undefined, userError: false},
     getters: {
         getUserMessageError: (state) => state.userMessageError,
         isUserError: (state) => state.userError,

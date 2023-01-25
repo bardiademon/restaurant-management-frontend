@@ -1,5 +1,5 @@
 const authError = {
-    state: {loginMessageError: '', loginError: false},
+    state: {loginMessageError: undefined, loginError: false},
     getters: {
         getLoginMessageError: (state) => state.loginMessageError,
         loginIsError: (state) => state.loginError,

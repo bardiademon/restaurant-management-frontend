@@ -12,9 +12,9 @@ const foods = {
         }
     },
     actions: {
-        getFoods: ({commit}) =>
+        getFoods: async ({commit}) =>
         {
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -39,10 +39,10 @@ const foods = {
                     }
                 });
         },
-        removeFoods: ({commit}, data) =>
+        removeFoods: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -65,10 +65,10 @@ const foods = {
                     }
                 });
         },
-        addFood: ({commit}, data) =>
+        addFood: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token"), "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY"}
                 })
@@ -87,7 +87,7 @@ const foods = {
                     }
                     catch (e)
                     {
-                        commit('setFoodsMessageError', "can't error handler");
+                        commit('setMessageError', "can't error handler");
                     }
                 });
         }

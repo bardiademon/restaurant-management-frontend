@@ -4,18 +4,16 @@ import {ref} from "vue";
 import store from "@/store";
 import router from "@/router";
 
-
 const data = ref({
   username: '',
   password: '',
 });
-
 const doLogin = () =>
 {
   store.dispatch('generateUserLogin', data)
       .then(() =>
       {
-        if (store.getters.loginIsError)
+        if (store.getters.loginIsError === true)
         {
           alert(store.getters.getLoginMessageError);
         }
@@ -26,7 +24,7 @@ const doLogin = () =>
           document.cookie = "token=" + token;
           router.push("dashboard");
         }
-      });
+      })
 };
 
 </script>

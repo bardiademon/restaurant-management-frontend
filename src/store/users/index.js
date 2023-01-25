@@ -12,9 +12,9 @@ const users = {
         }
     },
     actions: {
-        getUsers: ({commit}) =>
+        getUsers: async ({commit}) =>
         {
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -39,10 +39,10 @@ const users = {
                     }
                 });
         },
-        addUser: ({commit}, data) =>
+        addUser: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token"), "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY"}
                 })
@@ -57,7 +57,12 @@ const users = {
                     commit('setUserError', true);
                     try
                     {
-                        commit('setUserMessageError', err.response.data.message);
+                        let message = err.response.data.message;
+                        if (message === undefined)
+                        {
+                            commit('setUserMessageError', "can't error handler");
+                        }
+                        else commit('setUserMessageError', message);
                     }
                     catch (e)
                     {

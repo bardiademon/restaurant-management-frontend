@@ -2,7 +2,7 @@ import authError from "@/store/auth/errors";
 import axios from "axios";
 
 const user = {
-    state: {token: ''},
+    state: {token: undefined},
     getters: {getToken: (state) => state.token},
     mutations: {
         setToken: (state, token) =>
@@ -11,10 +11,9 @@ const user = {
         }
     },
     actions: {
-        generateUserLogin: ({commit}, data) =>
+        generateUserLogin: async ({commit}, data) =>
         {
-            console.log(data.value);
-            axios
+            await axios
                 .post("http://localhost:8888/users/login", data.value)
                 .then(res =>
                 {

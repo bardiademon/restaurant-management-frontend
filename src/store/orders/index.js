@@ -12,9 +12,9 @@ const orders = {
         }
     },
     actions: {
-        getOrders: ({commit}) =>
+        getOrders: async ({commit}) =>
         {
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -38,10 +38,10 @@ const orders = {
                     }
                 });
         },
-        removeOrder: ({commit}, data) =>
+        removeOrder: async ({commit}, data) =>
         {
             console.log(data);
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
@@ -64,9 +64,9 @@ const orders = {
                     }
                 });
         },
-        addOrder: ({commit}, data) =>
+        addOrder: async ({commit}, data) =>
         {
-            axios
+            await axios
                 .create({
                     headers: {token: getCookie("token")}
                 })
