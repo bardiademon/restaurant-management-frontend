@@ -12,9 +12,9 @@ const getUsers = () =>
   store.dispatch('getUsers')
       .then(() =>
       {
-        if (store.getters.isError)
+        if (store.getters.isUserError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getUserMessageError());
         }
       });
 };

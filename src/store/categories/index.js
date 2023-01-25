@@ -1,6 +1,6 @@
 import axios from "axios";
-import publicError from "@/store/errors";
 import getCookie from "@/utils/GetCookie";
+import categoryError from "@/store/categories/errors";
 
 const categories = {
     state: {categories: []},
@@ -22,20 +22,20 @@ const categories = {
                 .then(res =>
                 {
                     const categories = res.data.info;
-                    commit('setError', false);
+                    commit('setCategoryError', false);
                     commit('setCategories', categories);
                 })
                 .catch(err =>
                 {
                     console.log(err);
-                    commit('setError', true);
+                    commit('setCategoryError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setCategoryMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setCategoryMessageError', "can't error handler");
                     }
                 });
         },
@@ -50,18 +50,18 @@ const categories = {
                 .then(res =>
                 {
                     console.log(res);
-                    commit('setError', false);
+                    commit('setCategoryError', false);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setCategoryError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setCategoryMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setCategoryMessageError', "can't error handler");
                     }
                 });
         },
@@ -76,23 +76,23 @@ const categories = {
                 .then(res =>
                 {
                     console.log(res);
-                    commit('setError', false);
+                    commit('setCategoryError', false);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setCategoryError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setCategoryMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setCategoryMessageError', "can't error handler");
                     }
                 });
         }
     },
-    modules: {publicError}
+    modules: {categoryError}
 };
 
 export default categories;

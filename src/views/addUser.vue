@@ -107,10 +107,10 @@ const add = () =>
   store.dispatch("addUser", data.value)
       .then(() =>
       {
-        console.log(store.getters.isError)
-        if (store.getters.isError)
+        console.log(store.getters.isUserError)
+        if (store.getters.isUserError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.setUserMessageError);
         }
         else alert("Added");
       });

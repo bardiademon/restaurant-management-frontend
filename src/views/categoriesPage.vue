@@ -12,9 +12,9 @@ const getCategories = () =>
   store.dispatch('getCategories')
       .then(() =>
       {
-        if (store.getters.isError)
+        if (store.getters.isCategoryError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getCategoryMessageError);
         }
       });
 };
@@ -24,9 +24,9 @@ const removeCategory = (id) =>
   store.dispatch('removeCategory', id)
       .then(() =>
       {
-        if (store.getters.isError)
+        if (store.getters.isCategoryError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getCategoryMessageError);
         }
       });
 };

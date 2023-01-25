@@ -13,9 +13,9 @@ const getFoods = () =>
   store.dispatch('getFoods')
       .then(() =>
       {
-        if (store.getters.isError)
+        if (store.getters.isFoodsError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getFoodsMessageError);
         }
       });
 };
@@ -25,9 +25,9 @@ const removeFood = (id) =>
   store.dispatch('removeFoods', id)
       .then(() =>
       {
-        if (store.getters.isError)
+        if (store.getters.isFoodsError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getFoodsMessageError);
         }
       });
 };

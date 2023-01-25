@@ -74,10 +74,10 @@ const add = () =>
   store.dispatch("addOrder", {user_id: data.value.userId, foods: foodsId, delivery_id: data.value.deliveryId})
       .then(() =>
       {
-        console.log(store.getters.isError)
-        if (store.getters.isError)
+        console.log(store.getters.isOrderError)
+        if (store.getters.isOrderError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getOrderMessageError);
         }
         else alert("Added");
       });

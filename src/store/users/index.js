@@ -1,6 +1,6 @@
 import axios from "axios";
-import publicError from "@/store/errors";
 import getCookie from "@/utils/GetCookie";
+import userError from "@/store/users/errors";
 
 const users = {
     state: {users: []},
@@ -22,20 +22,20 @@ const users = {
                 .then(res =>
                 {
                     const users = res.data.info;
-                    commit('setError', false);
+                    commit('setUserError', false);
                     commit('setUsers', users);
                 })
                 .catch(err =>
                 {
                     console.log(err);
-                    commit('setError', true);
+                    commit('setUserError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setUserMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setUserMessageError', "can't error handler");
                     }
                 });
         },
@@ -50,23 +50,23 @@ const users = {
                 .then(res =>
                 {
                     console.log(res);
-                    commit('setError', false);
+                    commit('setUserError', false);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setUserError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setUserMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setUserMessageError', "can't error handler");
                     }
                 });
         }
     },
-    modules: {publicError}
+    modules: {userError}
 };
 
 export default users;

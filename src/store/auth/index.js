@@ -1,4 +1,4 @@
-import userError from "@/store/auth/errors";
+import authError from "@/store/auth/errors";
 import axios from "axios";
 
 const user = {
@@ -36,7 +36,7 @@ const user = {
                 });
         }
     },
-    modules: {userError}
+    modules: {authError}
 };
 
 export default user;

@@ -40,10 +40,10 @@ const add = () =>
   store.dispatch("addCategory", data.value)
       .then(() =>
       {
-        console.log(store.getters.isError)
-        if (store.getters.isError)
+        console.log(store.getters.isCategoryError)
+        if (store.getters.isCategoryError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getCategoryMessageError);
         }
         else alert("Added");
       });

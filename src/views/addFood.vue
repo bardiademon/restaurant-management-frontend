@@ -75,10 +75,10 @@ const add = () =>
   store.dispatch("addFood", data.value)
       .then(() =>
       {
-        console.log(store.getters.isError)
-        if (store.getters.isError)
+        console.log(store.getters.isFoodsError)
+        if (store.getters.isFoodsError)
         {
-          alert(store.getters.getMessageError);
+          alert(store.getters.getFoodsMessageError);
         }
         else alert("Added");
       });

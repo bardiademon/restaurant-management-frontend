@@ -1,8 +1,8 @@
-const userError = {
-    state: {loginMessageError: '', error: false},
+const authError = {
+    state: {loginMessageError: '', loginError: false},
     getters: {
         getLoginMessageError: (state) => state.loginMessageError,
-        loginIsError: (state) => state.error,
+        loginIsError: (state) => state.loginError,
     },
     mutations: {
         setLoginMessageError: (state, message) =>
@@ -11,11 +11,11 @@ const userError = {
         },
         loginSetError: (state, error) =>
         {
-            state.error = error
+            state.loginError = error
         }
     },
     actions: {},
     modules: {}
 };
 
-export default userError;
+export default authError;

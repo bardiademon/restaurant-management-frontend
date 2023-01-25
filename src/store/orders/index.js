@@ -1,6 +1,6 @@
 import axios from "axios";
-import publicError from "@/store/errors";
 import getCookie from "@/utils/GetCookie";
+import orderError from "@/store/orders/errors";
 
 const orders = {
     state: {orders: []},
@@ -22,19 +22,19 @@ const orders = {
                 .then(res =>
                 {
                     const orders = res.data.info;
-                    commit('setError', false);
+                    commit('setOrderError', false);
                     commit('setOrders', orders);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setOrderError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setOrderMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setOrderMessageError', "can't error handler");
                     }
                 });
         },
@@ -49,18 +49,18 @@ const orders = {
                 .then(res =>
                 {
                     console.log(res);
-                    commit('setError', false);
+                    commit('setOrderError', false);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setOrderError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setOrderMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setOrderMessageError', "can't error handler");
                     }
                 });
         },
@@ -74,23 +74,23 @@ const orders = {
                 .then(res =>
                 {
                     console.log(res);
-                    commit('setError', false);
+                    commit('setOrderError', false);
                 })
                 .catch(err =>
                 {
-                    commit('setError', true);
+                    commit('setOrderError', true);
                     try
                     {
-                        commit('setMessageError', err.response.data.message);
+                        commit('setOrderMessageError', err.response.data.message);
                     }
                     catch (e)
                     {
-                        commit('setMessageError', "can't error handler");
+                        commit('setOrderMessageError', "can't error handler");
                     }
                 });
         }
     },
-    modules: {publicError}
+    modules: {orderError}
 };
 
 export default orders;

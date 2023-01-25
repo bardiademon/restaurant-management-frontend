@@ -1,3 +1,36 @@
+<script setup>
+
+import {ref} from "vue";
+import store from "@/store";
+import router from "@/router";
+
+
+const data = ref({
+  username: '',
+  password: '',
+});
+
+const doLogin = () =>
+{
+  store.dispatch('generateUserLogin', data)
+      .then(() =>
+      {
+        if (store.getters.loginIsError)
+        {
+          alert(store.getters.getLoginMessageError);
+        }
+        else
+        {
+          const token = store.getters.getToken;
+          console.log("token: " + token)
+          document.cookie = "token=" + token;
+          router.push("dashboard");
+        }
+      });
+};
+
+</script>
+
 <template>
   <div class="container">
     <form @submit.prevent="login">
@@ -40,37 +73,6 @@
   </div>
 </template>
 
-<script setup>
-
-import {ref} from "vue";
-import store from "@/store";
-import router from "@/router";
-
-const data = ref({
-  username: '',
-  password: '',
-});
-
-const doLogin = () =>
-{
-  store.dispatch('generateUserLogin', data)
-      .finally(() =>
-      {
-        if (store.getters.loginIsError)
-        {
-          alert(store.getters.getLoginMessageError);
-        }
-        else
-        {
-          const token = store.getters.getToken;
-          console.log("token: " + token)
-          document.cookie = "token=" + token;
-          router.push("dashboard");
-        }
-      });
-};
-
-</script>
 
 <style scoped>
 .container
